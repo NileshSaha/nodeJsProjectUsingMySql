@@ -26,7 +26,7 @@ exports.getProduct = (req, res, next) => {
   //     });
   //   })
   //   .catch(err => console.log(err));
-  Product.findByPk(prodId)
+  Product.findById(prodId)
     .then(product => {
       res.render('shop/product-detail', {
         product: product,
@@ -60,10 +60,7 @@ exports.getCart = (req, res, next) => {
           prod => prod.id === product.id
         );
         if (cartProductData) {
-          cartProducts.push({
-            productData: product,
-            qty: cartProductData.qty
-          });
+          cartProducts.push({ productData: product, qty: cartProductData.qty });
         }
       }
       res.render('shop/cart', {
